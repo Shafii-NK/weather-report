@@ -2,13 +2,6 @@
 
 A small Bash project that fetches the current weather for a city, saves the raw report, and appends a timestamped log entry.
 
-This is a good profile project because it shows a complete mini workflow:
-
-- shell scripting
-- command-line APIs with `curl`
-- text processing with `grep`, `awk`, and `date`
-- generated output files and simple logging
-
 ## What it does
 
 - Pulls live weather data from [wttr.in](https://wttr.in)
