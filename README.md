@@ -13,6 +13,10 @@ A small Bash project that fetches the current weather for a city, saves the raw 
 
 - Bash
 - `curl`
+- `grep`
+- `awk`
+- `head`
+- `date`
 - A Unix-like shell environment
 
 ## Usage
@@ -33,6 +37,8 @@ Optional environment variables:
 
 - `TIMEZONE` controls the timestamp timezone. Default: `Africa/Casablanca`
 - `OUTPUT_DIR` changes where generated files are written. Default: `logs`
+
+If `TIMEZONE` is invalid, the script exits with a clear error message.
 
 Example:
 
@@ -66,3 +72,13 @@ casablanca-weather-logger/
 ## Notes
 
 The forecast parsing is intentionally lightweight so the script stays small and easy to follow. If you want, the next version can switch to a JSON-based weather API and make the parsing more reliable.
+
+## Reliability and safety behavior
+
+- The script checks required commands before doing any work.
+- Network requests use timeouts and a small retry policy:
+  - `--connect-timeout 10`
+  - `--max-time 30`
+  - `--retry 2`
+- Passing an empty city argument is rejected. Omitting the city still uses the default (`Casablanca`).
+- Output directory and file write failures are reported with explicit error messages.
